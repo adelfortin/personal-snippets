@@ -1,4 +1,8 @@
 {
+    "tesuto": {
+        "prefix": "tesuto",
+        "body": "setImmediate(() => {\n\t${0}\n})"
+    },
     "setImmediate": {
         "prefix": "sim",
         "body": "setImmediate(() => {\n\t${0}\n})"
