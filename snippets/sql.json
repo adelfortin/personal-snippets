@@ -1,262 +1,292 @@
 {
-    "createt": {
-        "prefix": "createt",
-        "body": ["CREATE TABLE ${1:tableName} (", "\t${2:attribute(s)}", ");"],
-        "description": "Create regular table"
-    },
-    "createti": {
-        "prefix": "createti",
+    "qt": {
+        "prefix": "qt",
         "body": [
-            "CREATE TABLE IF NOT EXISTS ${1:tableName} (",
-            "\t${2:attribute(s)}",
-            ");"
+            "-----------------",
+            "-- QUESTION N° ${1:number}",
+            "-----------------",
+            ""
         ],
-        "description": "Create table with conditional"
+        "description": "Snippet for adding a question section with number"
     },
-    "created": {
-        "prefix": "created",
-        "body": ["CREATE DATABASE ${1:name};"],
-        "description": "Create regular table"
-    },
-    "createdi": {
-        "prefix": "createdi",
-        "body": ["CREATE DATABASE IF NOT EXISTS ${1:name};"],
-        "description": "Create table with conditional"
-    },
-    "insert": {
-        "prefix": "insert",
+    "qz": {
+        "prefix": "qz",
         "body": [
-            "INSERT INTO ${1:tableName} (",
-            "\t${2:attribute(s)}",
-            ") VALUES ( ${3:values} )"
+            "-----------------",
+            "-- ${1:title}",
+            "-----------------",
+            ""
         ],
-        "description": "Insert value(s)"
+        "description": "Snippet for adding a generic section"
     },
-    "dropt": {
-        "prefix": "dropt",
-        "body": ["DROP TABLE ${1:tableName};"],
-        "description": "Drop table"
-    },
-    "dropd": {
-        "prefix": "dropd",
-        "body": ["DROP DATABASE ${1:dbName};"],
-        "description": "Drop database"
-    },
-    "dropti": {
-        "prefix": "dropti",
-        "body": ["DROP TABLE IF EXISTS ${1:tableName};"],
-        "description": "Drop table with conditional"
-    },
-    "dropdi": {
-        "prefix": "dropdi",
-        "body": ["DROP DATABASE IF EXISTS ${1:dbName};"],
-        "description": "Drop database with conditional"
-    },
-    "showt": {
-        "prefix": "showt",
-        "body": ["SHOW TABLES;"],
-        "description": "Show tables"
-    },
-    "showd": {
-        "prefix": "showd",
-        "body": ["SHOW DATABASES;"],
-        "description": "Show databases"
-    },
-    "select": {
-        "prefix": "select",
-        "body": ["SELECT ${1:attribute(s)} FROM ${2:tableName};"],
-        "description": "Regular select"
-    },
-    "selectd": {
-        "prefix": "selectd",
-        "body": ["SELECT DISTINCT ${1:attribute(s)}", "\tFROM ${2:tableName};"],
-        "description": "Select Distinct"
-    },
-    "selectw": {
-        "prefix": "selectw",
+    "sela": {
+        "prefix": "sela",
         "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tWHERE ${3:condition};"
+            "SELECT * FROM ${1:table};"
         ],
-        "description": "Select with condition"
+        "description": "Select all from a table"
     },
-    "selector": {
-        "prefix": "selector",
+    "join": {
+        "prefix": "join",
         "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tORDER BY ${3:attribute(s)} ${4:ASC|DESC};"
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tJOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
         ],
-        "description": "Select with order"
+        "description": "Snippet for JOIN"
     },
-    "updatet": {
-        "prefix": "updatet",
+    "join2": {
+        "prefix": "join2",
         "body": [
-            "UPDATE ${1:tableName}",
-            "\tSET ${2:attribute(s)}",
-            "\tWHERE ${3:condition};"
+            "SELECT ${1:col}, ${2:col2}",
+            "FROM ${3:tableA} A, ${4:tableB} B",
+            "WHERE A.${5:cle} = B.${6:cle};"
         ],
-        "description": "Update table"
-    },
-    "delete": {
-        "prefix": "delete",
-        "body": ["DELETE FROM ${1:tableName}", "\tWHERE ${3:condition};"],
-        "description": "Delete records"
-    },
-    "altert": {
-        "prefix": "altert",
-        "body": ["ALTER TABLE ${1:tableName}", "\t ${2:intructions};"],
-        "description": "Alter table"
-    },
-    "alterad": {
-        "prefix": "alterad",
-        "body": ["ALTER TABLE ${1:tableName}", "\tADD COLUMN ${2:col_name};"],
-        "description": "Alter table - Add column"
-    },
-    "alteraf": {
-        "prefix": "alteraf",
-        "body": [
-            "ALTER TABLE ${1:tableName}",
-            "\tADD COLUMN ${2:col_name}",
-            "\tAFTER ${5:col_name};"
-        ],
-        "description": "Alter table - Add column after"
-    },
-    "alterdb": {
-        "prefix": "alterdb",
-        "body": [
-            "ALTER DATABASE ${1:dbName}",
-            "\tCHARACTER SET ${2:charset}",
-            "\tCOLLATE ${3:utf8_unicode_ci};"
-        ],
-        "description": "Alter database"
-    },
-    "ijoin": {
-        "prefix": "ijoin",
-        "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tINNER JOIN ${3:tableName2}",
-            "\tON ${4:match};"
-        ],
-        "description": "Inner Join"
-    },
-    "rjoin": {
-        "prefix": "rjoin",
-        "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tRIGHT JOIN ${3:tableName2}",
-            "\tON ${4:match};"
-        ],
-        "description": "Right Join"
+        "description": "Snippet for multi-table SELECT with implicit join"
     },
     "ljoin": {
         "prefix": "ljoin",
         "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tLEFT JOIN ${3:tableName2}",
-            "\tON ${4:match};"
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tLEFT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
         ],
-        "description": "Left Join"
+        "description": "Snippet for LEFT JOIN"
     },
-    "fjoin": {
-        "prefix": "fjoin",
+    "rjoin": {
+        "prefix": "rjoin",
         "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tFULL JOIN OUTER ${3:tableName2}",
-            "\tON ${4:match}",
-            "\tWHERE ${5:condition};"
+            "SELECT *",
+            "FROM ${1:tab1_name} ${2:alias1}",
+            "\tRIGHT JOIN ${3:tab2_name} ${4:alias2} ON ${2:alias1}.${5:cle} = ${4:alias2}.${6:cle};"
         ],
-        "description": "Full Join"
+        "description": "Snippet for RIGHT JOIN"
     },
-    "union": {
-        "prefix": "union",
+    "fout": {
+        "prefix": "fout",
         "body": [
-            "SELECT ${1:attribute(s)} FROM ${2:tableName}",
-            "UNION",
-            "SELECT ${3:attribute(s)} FROM ${4:tableName2};"
+            "SELECT ${1:col}",
+            "FROM ${2:tab1_name} ${3:alias1}",
+            "\tFULL OUTER JOIN ${4:table2_name} ${5:alias2} ON ${3:alias1}.${6:cle} = ${5:alias2}.${7:cle}",
+            "WHERE ${3:alias1}.${8:cle} IS NULL OR ${5:alias2}.${9:cle} IS NULL;"
         ],
-        "description": "Regular union"
+        "description": "Snippet for FULL OUTER JOIN"
     },
-    "uniona": {
-        "prefix": "uniona",
+    "where": {
+        "prefix": "where",
         "body": [
-            "SELECT ${1:attribute(s)} FROM ${2:tableName}",
-            "UNION ALL",
-            "SELECT ${3:attribute(s)} FROM ${4:tableName2};"
+            "SELECT *",
+            "FROM ${1:tab_name}",
+            "WHERE ${2:conditions};"
         ],
-        "description": "All union"
+        "description": "Snippet for WHERE clause"
     },
-    "groupb": {
-        "prefix": "groupb",
+    "group": {
+        "prefix": "group",
         "body": [
-            "SELECT ${1:attribute(s)}",
-            "\tFROM ${2:tableName}",
-            "\tGROUP BY ${3:attribute(s)};"
+            "SELECT ${1:col1}, ${2:col2}",
+            "FROM ${3:table_name}",
+            "GROUP BY ${1:col1}, ${2:col2};"
         ],
-        "description": "Group by"
+        "description": "Snippet for GROUP BY"
     },
-    "bakupd": {
-        "prefix": "bakupd",
-        "body": ["BACKUP DATABASE ${1:dbName}", "\tTO DISK ${2:filepath};"],
-        "description": "Backup database"
-    },
-    "bakupdw": {
-        "prefix": "bakupdw",
+    "having": {
+        "prefix": "having",
         "body": [
-            "BACKUP DATABASE ${1:dbName}",
-            "\tTO DISK ${2:filepath}",
-            "\tWITH ${3:DIFERENTIAL};"
+            "SELECT ${1:col1}, ${2:col2}",
+            "FROM ${3:table_name}",
+            "HAVING ${4:conditions};"
         ],
-        "description": "Diferencial backup database"
+        "description": "Snippet for HAVING clause"
     },
-    "primaryk": {
-        "prefix": "primaryk",
-        "body": ["PRIMARY KEY(${1:attribute})"],
-        "description": "Primary Key"
-    },
-    "primarykc": {
-        "prefix": "primarykc",
-        "body": ["CONSTRAINT ${1:attribute} PRIMARY KEY(${2:attribute(s)})"],
-        "description": "Constraint rimary Key"
-    },
-    "foreingk": {
-        "prefix": "foreingk",
+    "havg": {
+        "prefix": "havg",
         "body": [
-            "FOREIGN KEY(${1:attribute}) REFERENCES ${2:tableName}(${3:attribute})"
+            "SELECT ${1:col1}, ${2:col2}",
+            "FROM ${3:table_name}",
+            "HAVING ${4:conditions}",
+            "GROUP BY ${1:col1}, ${2:col2};"
         ],
-        "description": "Foreing Key"
+        "description": "Snippet for HAVING and GROUP BY"
     },
-    "foreingkc": {
-        "prefix": "foreingkc",
+    "order": {
+        "prefix": "order",
         "body": [
-            "CONSTRAINT ${1:attribute} FOREIGN KEY (${2:attribute(s)})",
-            "\tREFERENCES ${3:tableName}(${4:attribute})"
+            "SELECT ${1:col1}, ${2:col2}",
+            "FROM ${3:table_name}",
+            "HAVING ${4:conditions}",
+            "GROUP BY ${1:col1}, ${2:col2}",
+            "ORDER BY ${5:cle};"
         ],
-        "description": "Constraint foreing Key"
+        "description": "Snippet for ORDER BY clause"
+    },
+    "gb": {
+        "prefix": "gb",
+        "body": ["GROUP BY ${1:column}"],
+        "description": "Group by column"
+    },
+    "ob": {
+        "prefix": "ob",
+        "body": ["ORDER BY ${1:column}"],
+        "description": "Order by column"
+    },
+    "if": {
+        "prefix": "if",
+        "body": ["IF NOT EXISTS ${1:condition};"],
+        "description": "IF NOT EXISTS condition"
     },
     "check": {
         "prefix": "check",
-        "body": ["CHECK ( ${1:condition} )"],
-        "description": "Check"
+        "body": ["CHECK (${1:condition})"],
+        "description": "Snippet for CHECK constraint"
     },
-    "creteuser": {
-        "prefix": "createuser",
-        "body": "CREATE USER '${1:username}'@'${2:localhost}' IDENTIFIED BY '${3:password}';",
-        "description": "Create User"
+    "add": {
+        "prefix": "add",
+        "body": ["ALTER TABLE ${1:table_name} ADD CONSTRAINT ${2:constraint};"],
+        "description": "Add constraint to a table"
     },
-    "deleteuser": {
-        "prefix": "deleteuser",
-        "body": "DELETE FROM mysql.user WHERE user = '${1:userName}';",
-        "description": "Delete user"
+    "seq": {
+        "prefix": "seq",
+        "body": ["CREATE SEQUENCE IF NOT EXISTS ${1:sequence_name}_seq;"],
+        "description": "Create sequence if not exists"
     },
-    "grantuser": {
-        "prefix": "grantuser",
-        "body": "GRANT ALL PRIVILEGES ON ${1:db}.${2:tb} TO '${3:user_name}'@'${4:localhost}';",
-        "description": "Grant privileges"
+    "view": {
+        "prefix": "view",
+        "body": [
+            "CREATE VIEW ${1:view_name} AS",
+            "\tSELECT *",
+            "\tFROM ${2:table}",
+            "\tWHERE ${3:condition};",
+            "",
+            "SELECT * FROM ${1:view_name};"
+        ],
+        "description": "Create SQL view"
+    },
+    "table": {
+        "prefix": "table",
+        "body": [
+            "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
+            "\t${2:col1} ${3:TYPE},",
+            "\t${4:col2} ${5:TYPE},",
+            "\t${6:col3} ${7:TYPE}",
+            ");"
+        ],
+        "description": "Create SQL table"
+    },
+    "dt": {
+        "prefix": "dt",
+        "body": ["DROP TABLE IF EXISTS ${1:table_name} CASCADE;"],
+        "description": "Drop table if exists"
+    },
+    "dl": {
+        "prefix": "dl",
+        "body": [
+            "DELETE FROM ${1:table_name}",
+            "WHERE ${2:condition};"
+        ],
+        "description": "Delete row from a table"
+    },
+    "ds": {
+        "prefix": "ds",
+        "body": ["DROP SEQUENCE IF EXISTS ${1:sequence_name} CASCADE;"],
+        "description": "Drop sequence if exists"
+    },
+    "dv": {
+        "prefix": "dv",
+        "body": ["DROP VIEW IF EXISTS ${1:view_name};"],
+        "description": "Drop view if exists"
+    },
+    "update": {
+        "prefix": "update",
+        "body": [
+            "UPDATE ${1:table_name}",
+            "\tSET ${2:col1} = ${3:value1}, ${4:col2} = ${5:value2}",
+            "\tWHERE ${6:condition};"
+        ],
+        "description": "Update table row"
+    },
+    "insert": {
+        "prefix": "insert",
+        "body": [
+            "INSERT INTO ${1:table_name}(${2:col1}, ${3:col2})",
+            "VALUES (${4:value1}, ${5:value2});"
+        ],
+        "description": "Insert values into table"
+    },
+    "df": {
+        "prefix": "df",
+        "body": [
+            "DELETE FROM ${1:table_name}",
+            "WHERE ${2:condition};"
+        ],
+        "description": "Delete from table with condition"
+    },
+    "pkc": {
+        "prefix": "pkc",
+        "body": [
+            "CONSTRAINT ${1:pk_name} PRIMARY KEY(${2:column})"
+        ],
+        "description": "Primary key constraint"
+    },
+    "fkc": {
+        "prefix": "fkc",
+        "body": [
+            "CONSTRAINT ${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
+        ],
+        "description": "Foreign key constraint"
+    },
+    "pk": {
+        "prefix": "pk",
+        "body": [
+            "${1:pk_name} PRIMARY KEY(${2:column})"
+        ],
+        "description": "Primary key"
+    },
+    "fk": {
+        "prefix": "fk",
+        "body": [
+            "${1:fk_name} FOREIGN KEY(${2:column}) REFERENCES ${3:ref_table}(${4:ref_column})"
+        ],
+        "description": "Foreign key"
+    },
+    "date": {
+        "prefix": "date",
+        "body": ["DATE NOT NULL"],
+        "description": "Date type with NOT NULL"
+    },
+    "timestamp": {
+        "prefix": "timestamp",
+        "body": ["TIMESTAMP NOT NULL"],
+        "description": "Timestamp type with NOT NULL"
+    },
+    "var": {
+        "prefix": "var",
+        "body": ["VARCHAR(${1:length})"],
+        "description": "Varchar type"
+    },
+    "char": {
+        "prefix": "char",
+        "body": ["CHAR(${1:length})"],
+        "description": "Char type"
+    },
+    "serial": {
+        "prefix": "serial",
+        "body": ["SERIAL PRIMARY KEY"],
+        "description": "Serial primary key"
+    },
+    "datep": {
+        "prefix": "datep",
+        "body": ["date_part(${1:text}, ${2:timestamp})"],
+        "description": "Date part function"
+    },
+    "datet": {
+        "prefix": "datet",
+        "body": ["date_trunc(${1:text}, ${2:timestamp})"],
+        "description": "Date truncation function"
+    },
+    "cd": {
+        "prefix": "cd",
+        "body": ["CURRENT_DATE"],
+        "description": "Current date"
     }
 }
